@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMS Workforce Portal - Comprehensive User Guide</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-light: rgba(124, 58, 237, 0.08);
+      --success: #16a34a;
+      --success-light: rgba(22, 163, 74, 0.08);
+      --warning: #ca8a04;
+      --warning-light: rgba(202, 138, 4, 0.08);
+      --danger: #dc2626;
+      --danger-light: rgba(220, 38, 38, 0.08);
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --sidebar-width: 300px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* --- Sidebar Navigation --- */
+    aside {
+      width: var(--sidebar-width);
+      background-color: var(--surface);
+      border-right: 1px solid var(--border);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 30px 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), #a78bfa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+    }
+
+    .brand-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+      background: linear-gradient(to right, #0f172a, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin: 15px 0 8px 10px;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-item a {
+      display: flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 13px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item a:hover {
+      background-color: var(--surface-hover);
+      color: var(--text);
+    }
+
+    .nav-item.active a {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* --- Main Container --- */
+    main {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 60px 80px;
+      max-width: 1200px;
+    }
+
+    header {
+      margin-bottom: 50px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 30px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin: 0 0 10px 0;
+      background: linear-gradient(to right, #0f172a, var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin: 0;
+    }
+
+    section {
+      margin-bottom: 80px;
+      scroll-margin-top: 40px;
+    }
+
+    h2 {
+      font-size: 26px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 24px;
+      border-radius: 3px;
+      background-color: var(--primary);
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-top: 30px;
+      color: var(--primary);
+    }
+
+    p, li {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    ol, ul {
+      padding-left: 20px;
+    }
+
+    /* --- Cards & Containers --- */
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    /* --- Tables --- */
+    .settings-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13.5px;
+    }
+
+    .settings-table th, .settings-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .settings-table th {
+      background-color: var(--surface-hover);
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .settings-table tr:hover {
+      background-color: rgba(241, 245, 249, 0.5);
+    }
+
+    .code-badge {
+      font-family: monospace;
+      background-color: var(--surface-hover);
+      color: var(--primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* --- Alerts --- */
+    .alert {
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      display: flex;
+      gap: 16px;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .alert-info {
+      background-color: #f5f3ff;
+      border-left: 4px solid var(--primary);
+      color: #5b21b6;
+    }
+
+    .alert-success {
+      background-color: #f0fdf4;
+      border-left: 4px solid var(--success);
+      color: #166534;
+    }
+
+    /* --- Layouts & Device Mockups --- */
+    .layout-split {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 30px;
+    }
+
+    .mockup-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      perspective: 1000px;
+    }
+
+    .device-mockup {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+      border: 6px solid #e2e8f0;
+      background-color: #ffffff;
+      overflow: hidden;
+      transition: transform 0.5s ease;
+    }
+
+    .device-mockup:hover {
+      transform: translateY(-8px) rotateY(-2deg);
+    }
+
+    .device-mockup img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* --- Multi-Image Grids --- */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .grid-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .grid-image-wrap {
+      width: 100%;
+      border-radius: 12px;
+      border: 3px solid #e2e8f0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      background-color: #ffffff;
+    }
+
+    .grid-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .grid-card-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      text-align: center;
+      margin: 0;
+    }
+
+    /* --- Diagram Styles --- */
+    .diagram-container {
+      background-color: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      margin: 25px 0;
+    }
+
+    .diagram-step {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      width: 250px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .diagram-arrow {
+      width: 2px;
+      height: 25px;
+      background-color: var(--primary);
+      position: relative;
+    }
+
+    .diagram-arrow::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -4px;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--primary);
+    }
+
+    /* --- Footer --- */
+    footer {
+      margin-top: 100px;
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1024px) {
+      aside {
+        display: none;
+      }
+      main {
+        margin-left: 0;
+        padding: 40px;
+      }
+      .layout-split {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- --- Sidebar --- -->
+  <aside>
+    <div class="brand">
+      <div class="brand-logo">L</div>
+      <div class="brand-name">Workforce LMS</div>
+    </div>
+    
+    <div>
+      <div class="nav-section-title">Admin Portal</div>
+      <ul class="nav-list">
+        <li class="nav-item active"><a href="#admin-settings">1. Policy Configuration</a></li>
+        <li class="nav-item"><a href="#admin-dashboard">2. Command Dashboard</a></li>
+        <li class="nav-item"><a href="#admin-workforce">3. Workforce Management</a></li>
+        <li class="nav-item"><a href="#admin-manual">4. Manual Attendance</a></li>
+        <li class="nav-item"><a href="#admin-device">5. Security & Device Control</a></li>
+        <li class="nav-item"><a href="#admin-logs">6. System Audit Logs</a></li>
+        <li class="nav-item"><a href="#admin-reports">7. Report Generation</a></li>
+      </ul>
+
+      <div class="nav-section-title">Employee Portal</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#employee-login">8. Account Login</a></li>
+        <li class="nav-item"><a href="#employee-home">9. Dashboard & Shift Clock</a></li>
+        <li class="nav-item"><a href="#employee-history">10. History Calendar</a></li>
+        <li class="nav-item"><a href="#employee-leaves">11. Leave Requests</a></li>
+        <li class="nav-item"><a href="#employee-profile">12. Profile & Time Bank</a></li>
+      </ul>
+
+      <div class="nav-section-title">Guides & Troubleshooting</div>
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#faq-guide">13. FAQ & How-To Guides</a></li>
+        <li class="nav-item"><a href="#troubleshooting">14. Troubleshooting</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- --- Main Body --- -->
+  <main>
+
+
+    <h1 style="border-bottom: 3px double var(--border); padding-bottom: 10px; margin-top: 50px; font-size: 32px; background: linear-gradient(to right, #0f172a, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ADMINISTRATOR PORTAL</h1>
+    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 50px;">Operations guide, policy configuration parameter list, and management protocols.</p>
+
+    <!-- --- Admin settings --- -->
+    <section id="admin-settings">
+      <h2>1. Work Policy Configuration (Settings)</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            The system policies dictate how worked hours, overtime, holidays, geofences, and camera verifications behave. 
+            Admins must configure these values to align with employee contracts.
+          </p>
+          <div class="alert alert-info">
+            <strong>Policy Access:</strong> Navigate to the <strong>Menu (Settings)</strong> panel to configure shifts. Settings are saved globally and affect real-time calculations.
+          </div>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/admin/workforce1.jpeg" alt="System Settings Screenshot">
+          </div>
+          <div class="device-mockup">
+            <img src="./images/admin/WorkPolicy.jpeg" alt="System Settings Screenshot">
+          </div>
+        </div>
+      </div>
+
+      <h3>Configuration Parameter Guide</h3>
+      <table class="settings-table">
+        <thead>
+          <tr>
+            <th>Setting Name</th>
+            <th>Technical Key</th>
+            <th>Type/Range</th>
+            <th>Operational Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Daily Work Target</strong></td>
+            <td><span class="code-badge">dailyMinutes</span></td>
+            <td>Minutes (e.g., 493)</td>
+            <td>Standard daily target for 100% full-time staff (493 min = 8 hours 13 minutes). Target changes proportionally for part-timers.</td>
+          </tr>
+          <tr>
+            <td><strong>Weekly Work Target</strong></td>
+            <td><span class="code-badge">weeklyMinutes</span></td>
+            <td>Minutes (e.g., 2465)</td>
+            <td>Weekly target accumulated hours basis (usually 5 × Daily Target).</td>
+          </tr>
+          <tr>
+            <td><strong>Attendance Mode</strong></td>
+            <td><span class="code-badge">attendanceMode</span></td>
+            <td><span class="code-badge">selfie</span> / <span class="code-badge">qr</span></td>
+            <td><strong>selfie</strong> requires a front-facing camera verification check-in. <strong>qr</strong> requires scanning the physical office QR beacon.</td>
+          </tr>
+          <tr>
+            <td><strong>Schedule Mode</strong></td>
+            <td><span class="code-badge">scheduleMode</span></td>
+            <td><span class="code-badge">shift</span> / <span class="code-badge">flexible</span></td>
+            <td><strong>shift</strong> enforces strict check-in windows and marks late entries. <strong>flexible</strong> allows checks anytime during the calendar day.</td>
+          </tr>
+          <tr>
+            <td><strong>Office QR Beacon Value</strong></td>
+            <td><span class="code-badge">qrCodeValue</span></td>
+            <td>String Text</td>
+            <td>The exact token encoded inside the physical office QR sticker. The app validates this code during check-ins.</td>
+          </tr>
+          <tr>
+            <td><strong>Clock-In Window Start</strong></td>
+            <td><span class="code-badge">clockInWindowStart</span></td>
+            <td>Minutes from midnight</td>
+            <td>The earliest time employees can log check-in (e.g., 360 = 6:00 AM). In flexible mode, this is not enforced.</td>
+          </tr>
+          <tr>
+            <td><strong>Clock-In Window End</strong></td>
+            <td><span class="code-badge">clockInWindowEnd</span></td>
+            <td>Minutes from midnight</td>
+            <td>In shift mode, checking in after this limit (e.g., 600 = 10:00 AM) automatically marks the employee as Late.</td>
+          </tr>
+          <tr>
+            <td><strong>Earliest Clock-Out</strong></td>
+            <td><span class="code-badge">clockOutEarliest</span></td>
+            <td>Minutes from midnight</td>
+            <td>Prevents employees from clocking out early (e.g., 900 = 3:00 PM) unless they have an approved emergency leave request.</td>
+          </tr>
+          <tr>
+            <td><strong>Overtime Grace Period</strong></td>
+            <td><span class="code-badge">overtimeGraceMinutes</span></td>
+            <td>Minutes (e.g., 60)</td>
+            <td>Buffer time after target shift ends before overtime begins accumulating (e.g., 60 min grace means overtime starts at Hour 9).</td>
+          </tr>
+          <tr>
+            <td><strong>Lunch Break Window</strong></td>
+            <td><span class="code-badge">lunchBreakStart</span> / <span class="code-badge">End</span></td>
+            <td>Minutes from midnight</td>
+            <td>The time window where taking a break is allowed (e.g., 11:30 AM to 12:30 PM). In flexible mode, breaks can be taken anytime.</td>
+          </tr>
+          <tr>
+            <td><strong>Minimum Break Duration</strong></td>
+            <td><span class="code-badge">lunchMinimumMinutes</span></td>
+            <td>Minutes (e.g., 3)</td>
+            <td>To prevent accidental clicks, the manual break must stay active for at least this duration before it can be ended.</td>
+          </tr>
+          <tr>
+            <td><strong>Office Coordinates</strong></td>
+            <td><span class="code-badge">locationLatitude</span> / <span class="code-badge">Longitude</span></td>
+            <td>Floating point coordinates</td>
+            <td>The exact coordinates of the physical workspace center. Used to evaluate and prevent remote clock-ins.</td>
+          </tr>
+          <tr>
+            <td><strong>Geofence Radius</strong></td>
+            <td><span class="code-badge">locationRadius</span></td>
+            <td>Meters (e.g., 500)</td>
+            <td>The allowed radius around the office coordinates inside which employees must be located to log attendance successfully.</td>
+          </tr>
+          <tr>
+            <td><strong>Annual Vacation Days</strong></td>
+            <td><span class="code-badge">vacationLeaveTotal</span></td>
+            <td>Days (e.g., 12)</td>
+            <td>Default annual vacation balance credited to new employee registries.</td>
+          </tr>
+          <tr>
+            <td><strong>Annual Sick Days</strong></td>
+            <td><span class="code-badge">sickLeaveTotal</span></td>
+            <td>Days (e.g., 6)</td>
+            <td>Default annual sick leave balance.</td>
+          </tr>
+          <tr>
+            <td><strong>Payout Minimum Credit</strong></td>
+            <td><span class="code-badge">minPayoutMinutes</span></td>
+            <td>Minutes (e.g., 480)</td>
+            <td>Minimum credit accumulated in the Time Bank ledger before an employee can request a cash payout.</td>
+          </tr>
+          <tr>
+            <td><strong>Payout Increment Block</strong></td>
+            <td><span class="code-badge">payoutBlockMinutes</span></td>
+            <td>Minutes (e.g., 240)</td>
+            <td>The block size in which payouts must be requested (e.g., blocks of 4 hours).</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- --- Admin Dashboard --- -->
+    <section id="admin-dashboard">
+      <h2>2. Live Command Dashboard</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            The dashboard displays real-time statistics regarding workforce attendance, quick action shortcuts, and an interactive activity timeline.
+          </p>
+          <h3>Overview Metrics:</h3>
+          <ul>
+            <li><strong>Workforce Health:</strong> Shows the percentage of present employees relative to total staff. An active green badge indicates real-time synchronization.</li>
+            <li><strong>Staff/Member:</strong> Shows the total number of staff/members registred in the organization.</li>
+            <li><strong>Present Today:</strong> The number of employees currently checked in. Clicking this lists present members.</li>
+            <li><strong>Payout Request:</strong> The number of employees who have requested a payout for their accumulated overtime.</li>
+            <li><strong>Pending Leaves:</strong> Displays active vacation/sick/comp-off requests awaiting administrative approval.</li>
+          </ul>
+          <h3>Communications & Logs timeline:</h3>
+          <p>
+            Below the quick cards, a real-time chronological activity timeline logs events: clock-ins, clock-outs, break alerts, and pending approvals. Tap **View All** to navigate to audit logs.
+          </p>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/admin/Insights.jpeg" alt="Admin Command Dashboard Screenshot">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Workforce Management --- -->
+    <section id="admin-workforce">
+      <h2>3. Workforce Control (Member Directory)</h2>
+      <p>
+        Manage employee registrations, designate roles, configure custom contract percentages, and adjust leave allowances.
+      </p>
+
+      <div class="image-grid">
+        <div class="grid-card">
+          <div class="grid-image-wrap">
+            <img src="./images/admin/Workforce.jpeg" alt="Workforce List Screen">
+          </div>
+          <p class="grid-card-label">Employee Listing Directory</p>
+        </div>
+        <div class="grid-card">
+          <div class="grid-image-wrap">
+            <img src="./images/admin/RegisterMember.jpeg" alt="Add Member Form">
+          </div>
+          <p class="grid-card-label">Register Employee Form</p>
+        </div>
+        <div class="grid-card">
+          <div class="grid-image-wrap">
+            <img src="./images/admin/EditMember.jpeg" alt="Edit Member Settings">
+          </div>
+          <p class="grid-card-label">Edit Member Panel</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 30px;">Step-by-Step member creation:</h3>
+      <ol>
+        <li>Navigate to the **Workforce** page and tap the **Plus (+)** button.</li>
+        <li>Enter the employee's **Full Name**, **Email**, **Phone**, and designate a unique **Employee ID**.</li>
+        <li>Set the **Contract Percentage**: Set to <span class="code-badge">100</span> for full-time staff or adjust (e.g., <span class="code-badge">50</span>, <span class="code-badge">80</span>) for part-time staff. The daily/weekly shift targets are computed proportionally.</li>
+        <li>Save changes. The system automatically credits holiday accounts and generates default leave balance parameters.</li>
+      </ol>
+    </section>
+
+    <!-- --- Manual Attendance --- -->
+    <section id="admin-manual">
+      <h2>4. Manual Attendance Correction</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            When an employee experiences physical device loss, GPS sync issues, or forgets to log their shift, admins can manually override or create attendance logs.
+          </p>
+          <h3>How to enter manual attendance:</h3>
+          <ol>
+            <li>Navigate to **Manual Attendance**.</li>
+            <li>Select the target **Employee** from the dropdown and select the **Date** on the calendar.</li>
+            <li>Input the correct **Clock In** and **Clock Out** times.</li>
+            <li>Enter the **Break/Lunch Minutes**:
+              <ul>
+                <li><em>Leave Blank</em>: The system defaults to the organization's standard 30-minute unpaid break.</li>
+                <li><em>Enter Minutes</em>: Specify custom break durations (e.g., 60 minutes) to deduct from total worked time.</li>
+              </ul>
+            </li>
+            <li>Write a brief explanation in the **Reason** field (e.g., "Forgot to check out").</li>
+            <li>Tap **Submit Attendance Entry**.</li>
+          </ol>
+          <div class="alert alert-success">
+            <strong>Expected Hours Preview:</strong> The manual override form features a real-time calculator that previews worked duration, break deductions, and expected Time Bank impacts before you commit the changes.
+          </div>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/admin/ManualAttendance.jpeg" alt="Manual Attendance Override Form">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Device Control --- -->
+    <section id="admin-device">
+      <h2>5. Employee Details & Device Security Control</h2>
+      <p>
+        To prevent buddy-punching and clock-in fraud, the LMS binds each employee to a single hardware device. Logging check-ins from other devices triggers security alerts.
+      </p>
+
+      <div class="image-grid">
+        <div class="grid-card" style="flex: 1;">
+          <div class="grid-image-wrap">
+            <img src="./images/admin/EmployeeOverview.jpeg" alt="Overview & Device Authorization Screen">
+          </div>
+          <p class="grid-card-label">Overview & Device Settings</p>
+        </div>
+        <div class="grid-card" style="flex: 1;">
+          <div class="grid-image-wrap">
+            <img src="./images/admin/employeeoverview2.jpeg" alt="Contracts & Balances Screen">
+          </div>
+          <p class="grid-card-label">Contracts & Balances</p>
+        </div>
+        <div class="grid-card" style="flex: 1;">
+          <div class="grid-image-wrap">
+            <img src="./images/admin/employeeoverview3.jpeg" alt="Trend Charts & Calendar Screen">
+          </div>
+          <p class="grid-card-label">Calendar logs & Trends</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 30px;">Auditing Device Mismatches:</h3>
+      <ol>
+        <li>When an unrecognized device attempts check-in, an alert appears.</li>
+        <li>Navigate to the employee's detail view in the admin portal.</li>
+        <li>The **Security: Device Authorization** block highlights details of the unrecognized device (IP address, hardware model, last seen timestamp).</li>
+        <li>Choose to:
+          <ul>
+            <li><strong>Register Device as Primary</strong>: Overrides settings, setting the new device as the employee's authorized clock-in device.</li>
+            <li><strong>Ignore & Require Verification</strong>: Flags future attempts and requires further verification.</li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+
+    <!-- --- Logs --- -->
+    <section id="admin-logs">
+      <h2>6. System Audit Logs</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            Transparency is maintained via the System Logs timeline. Every administrative override, manual check-in adjustment, break alert, and time balance edit creates a timestamped record indicating which administrator performed the action.
+          </p>
+          <h3>Audit Capabilities:</h3>
+          <ul>
+            <li>Tracks identity changes and manual entries.</li>
+            <li>Chronological historical records filtered by dates.</li>
+            <li>Immutable database auditing.</li>
+          </ul>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/admin/Logs.jpeg" alt="Audit Trail Timeline Screen">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Reports --- -->
+    <section id="admin-reports">
+      <h2>7. PDF Report Generation & Print Evidence</h2>
+      <p>
+        From the Employee Detail page, admins can generate official documents for payroll audits or verification checks.
+      </p>
+      <p>
+        Clicking **Export PDF** generates a formatted document summarizing worked duration, target hours, holiday credits, and Time Bank ledgers. These documents can be printed directly from the mobile app or shared with payroll managers.
+      </p>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!--           EMPLOYEE SECTION                 -->
+    <!-- ========================================== -->
+    <h1 style="border-bottom: 3px double var(--border); padding-bottom: 10px; margin-top: 100px; font-size: 32px; background: linear-gradient(to right, #0f172a, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">EMPLOYEE PORTAL</h1>
+    <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 50px;">Mobile app check-in guide, lunch tracking, leave submission, and balance checks.</p>
+
+    <!-- --- Employee Login --- -->
+    <section id="employee-login">
+      <h2>8. Account Login & Authentication</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            Employees log in using credentials provided by their system administrator.
+          </p>
+          <h3>Login steps:</h3>
+          <ol>
+            <li>Launch the **Workforce LMS** app.</li>
+            <li>Enter your designated **Employee ID** or Email.</li>
+            <li>Enter your **Password**.</li>
+            <li>Tap **Sign In**.</li>
+          </ol>
+          <div class="alert alert-info">
+            <strong>Password Reset:</strong> If you cannot access your account, contact your administrator to reset your credentials. Admins can configure accounts to require a password update upon first login.
+          </div>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/login_screen.png" alt="Login Interface Screenshot">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Employee Home --- -->
+    <section id="employee-home">
+      <h2>9. Dashboard & Shift Clock Action</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            The Home Page provides access to shift controls, working hour progress, geofence confirmation, and break tracking.
+          </p>
+          <h3>Workday Step-by-Step:</h3>
+          <ol>
+            <li><strong>Clock In:</strong> When you arrive at the office, tap **Clock In Now** (or **Scan Station QR** if QR mode is enabled).
+              <ul>
+                <li><em>Selfie Mode</em>: The camera will prompt for a front-facing verification photo.</li>
+                <li><em>QR Mode</em>: Scan the office's physical QR beacon.</li>
+              </ul>
+            </li>
+            <li><strong>GPS Geofence Validation:</strong> The app checks your coordinates against the office coordinates. If you are outside the geofence radius, check-in is blocked.</li>
+            <li><strong>Time Countdown:</strong> Once clocked in, the dashboard displays your clock-in timestamp and shows a live countdown of remaining working hours.</li>
+            <li><strong>Lunch break tracking:</strong> During the lunch window, tap **Start Break**. The countdown pauses. When you return, tap **End Break** (minimum break duration is 3 minutes). If you forget to log a manual break, 30 minutes is automatically deducted at clock-out.</li>
+            <li><strong>Clock Out:</strong> At the end of the shift, tap **Clock Out** and confirm. If you clock out before the target hours are complete, a short-hours debit is recorded.</li>
+          </ol>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/employee/home.jpeg" alt="Employee Home Dashboard Screenshot">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Employee History --- -->
+    <section id="employee-history">
+      <h2>10. History Calendar logs</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            The Attendance History page displays your monthly attendance records on a calendar view.
+          </p>
+          <h3>Understanding Calendar Indicators:</h3>
+          <ul>
+            <li><strong>Green Dots:</strong> Present. Represents days with logged clock-in/out records.</li>
+            <li><strong>Purple Dots:</strong> Approved Leave. Represents vacation, sick leave, or comp-off days.</li>
+            <li><strong>Red Dots:</strong> Absent. Days without clock-in records where shifts were expected.</li>
+          </ul>
+          <h3>Day Detail Inspection:</h3>
+          <p>
+            Tapping any date displays worked duration, break times, and overtime or short-hour balances for that specific day.
+          </p>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/employee/History.jpeg" alt="Employee Attendance History Calendar Screenshot">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Employee Leaves --- -->
+    <section id="employee-leaves">
+      <h2>11. Leave Request Portal</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            Submit leave requests (Vacation, Sick Leave, Comp Off, or Emergency) and track approval statuses.
+          </p>
+          <h3>How to submit leave requests:</h3>
+          <ol>
+            <li>Go to the **Leaves** section.</li>
+            <li>Tap **New Leave Request**.</li>
+            <li>Choose the **Leave Type** and select **Start & End Dates**.</li>
+            <li>Write a brief explanation in the **Reason** text area.</li>
+            <li>Tap **Submit Leave Application**.</li>
+          </ol>
+          <p>
+            Admins receive immediate push notifications to approve or reject requests. Approved vacation and sick leave allocations are automatically deducted from your balance.
+          </p>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/employee/Leaves.jpeg" alt="Employee Leave Requests Screen Screenshot">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- Employee Profile --- -->
+    <section id="employee-profile">
+      <h2>12. Profile & Time Bank Ledger</h2>
+      <div class="layout-split">
+        <div>
+          <p>
+            The Profile page displays employee details, allows password updates, and hosts the Time Bank ledger.
+          </p>
+          <h3>Understanding your Time Bank:</h3>
+          <ul>
+            <li>The **Time Bank** tracks your cumulative overtime balance.</li>
+            <li><strong>Credits (+ Hours)</strong>: Added when you work more than your contract targets or when holidays occur.</li>
+            <li><strong>Debits (- Hours)</strong>: Deducted when you work less than your target hours, use comp-off days, or receive cash payouts.</li>
+            <li>Balances carry forward to let you take days off in lieu later.</li>
+          </ul>
+        </div>
+        <div class="mockup-container">
+          <div class="device-mockup">
+            <img src="./images/employee/Profile.jpeg" alt="Employee Profile & Time Bank Ledger Screenshot">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --- FAQ & How-To Guides --- -->
+    <section id="faq-guide">
+      <h2>13. FAQ & How-To Guides</h2>
+      <div class="card">
+        
+        <h3>Q1: How do I view an employee's lunch break and the exact duration they took?</h3>
+        <ul>
+          <li><strong>As an Admin:</strong>
+            <ol>
+              <li>Go to the <strong>Workforce Control</strong> tab and click the employee's name to open their <strong>Employee Detail Screen</strong> (illustrated in <em>Overview & Device Settings</em>).</li>
+              <li>Scroll down to the <strong>Attendance Calendar</strong>.</li>
+              <li>Tap on any specific date. The day's detail card directly below the calendar shows their exact **Clock-In**, **Clock-Out**, **Worked Time**, and **Break Time** (duration) taken.</li>
+              <li>You can also view break durations directly on the <strong>Attendance Records</strong> tab where each card displays "WORKED: Xh Ym" and "BREAK: Zh Wm".</li>
+            </ol>
+          </li>
+          <li><strong>As an Employee:</strong>
+            <ol>
+              <li>Open your <strong>History Calendar</strong> tab.</li>
+              <li>Tap on the date you wish to check. Below the calendar, a details box will pop up showing the exact clock-in, clock-out, manual break start/end times, and total duration.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <h3>Q2: How do I check an employee's overtime credits or negative (short) hours?</h3>
+        <ul>
+          <li><strong>As an Admin:</strong>
+            <ol>
+              <li>Open the employee's **Employee Detail Screen**. Inside the **Performance Cards** section, you will see a card labeled **Time Bank** displaying their net balance (e.g. <code>+12.0 hrs</code> in green for surplus overtime, or negative hours like <code>-4.5 hrs</code> in red for short hours).</li>
+              <li>To filter all corporate overtime logs, open the **Attendance Records** tab and select the **OT** filter chip. This highlights all records where employees clocked overtime.</li>
+              <li>Tapping on any date in the calendar shows the exact **Shortfall** (negative minutes) or **Overtime** (extra minutes) recorded for that shift.</li>
+            </ol>
+          </li>
+          <li><strong>As an Employee:</strong>
+            <ol>
+              <li>On your app's **Home Screen Dashboard** (<em>Employee Home Screen</em>), view the **Time Bank** status card. It shows your net credit/debit balance (e.g. <code>+4.5 hrs</code>).</li>
+              <li>If you work past your shift target, a live **OVERTIME** countdown timer starts running on the clock-in card showing your accrued minutes in real-time.</li>
+              <li>Open your **Profile Screen** to inspect the history of time adjustments, payout debits, and holiday credits in the ledger list.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <h3>Q3: How do I find an employee's remaining vacation day balance?</h3>
+        <ul>
+          <li><strong>As an Admin:</strong>
+            <ol>
+              <li>Open the **Employee Detail Screen** and scroll to the **Leave Balances** card.</li>
+              <li>You will see detailed progress tracks showing the total days allocated, used days, and remaining balance for **Vacation** (e.g. <code>112h / 160h</code>), **Sick Leave**, and **Comp-Off**.</li>
+            </ol>
+          </li>
+          <li><strong>As an Employee:</strong>
+            <ol>
+              <li>Navigate to your **Profile Screen** or the **Leaves Portal**. The top of the screens show clear widgets indicating your remaining balance for Vacation, Sick Leave, and Comp-Off days.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <h3>Q4: How do I manually edit, correct, or fill in attendance records?</h3>
+        <ul>
+          <li><strong>As an Admin:</strong>
+            <ol>
+              <li>Go to the **Manual Attendance** tab.</li>
+              <li>Select the **Employee** from the dropdown menu and select the **Date** of correction.</li>
+              <li>Configure the correct **Clock In** and **Clock Out** times.</li>
+              <li>Set the **Break/Lunch Minutes**:
+                <ul>
+                  <li><em>Leave Blank</em>: The system auto-applies your organization's standard 30-minute unpaid lunch break.</li>
+                  <li><em>Enter Minutes</em>: If the employee took a longer break (e.g. 2 hours), input the total minutes (e.g. <code>120</code>). This ensures their actual "Worked Time" calculations are accurate.</li>
+                </ul>
+              </li>
+              <li>Add an optional **Reason** (e.g., "Forgot to check out") and inspect the **Expected Hours Preview** card which displays computed worked hours and overtime/negative hours.</li>
+              <li>Tap **Submit Attendance Entry**. The Time Bank recalculates automatically.</li>
+            </ol>
+          </li>
+        </ul>
+
+        <h3>Q5: How do I schedule a person based on their work percentage to calculate exact hours?</h3>
+        <ul>
+          <li><strong>As an Admin:</strong>
+            <ol>
+              <li>The system handles this automatically using the employee's **Contract Percentage**. You do not need to manually compute schedules.</li>
+              <li>Open the **Workforce Control** tab, click **Add Member** or select an existing employee, and click **Edit Member**.</li>
+              <li>Find the **Contract Percentage** field and enter their percentage (e.g., <code>100</code> for full-time, <code>50</code> for half-time, <code>80</code> for a 4-day schedule). Click save.</li>
+              <li>The system takes the global **Base Daily Target** (e.g., 493 minutes / 8h13m) and scales it dynamically:
+                <ul>
+                  <li><em>100% staff target</em>: **493 minutes** (~8.2 hours) per day.</li>
+                  <li><em>80% staff target</em>: **394 minutes** (~6.5 hours) per day.</li>
+                  <li><em>50% staff target</em>: **247 minutes** (~4.1 hours) per day.</li>
+                </ul>
+              </li>
+              <li>When the employee clocks out, the system calculates worked minutes and compares it to their scaled target:
+                <br><code>Worked Time - Proportional Target Time = Daily Time Bank Balance</code>.
+                <br>A positive result adds to their **Overtime Credit**, while a negative result adds to their **Short-Hours Debit (Negative Hours)**.
+              </li>
+            </ol>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- --- Troubleshooting --- -->
+    <section id="troubleshooting">
+      <h2>14. Troubleshooting Checklist</h2>
+      <div class="card">
+        <h3>Employee Check-In Failures</h3>
+        <ul>
+          <li><strong>Geofence Error:</strong> Check that Location services are enabled and you are within office geofence limits.</li>
+          <li><strong>Camera Mismatch Alert:</strong> If you are using a new device, contact the admin to update your primary authorized device.</li>
+          <li><strong>QR Code Error:</strong> Ensure proper lighting when scanning physical office QR codes.</li>
+        </ul>
+        
+        <h3>Incorrect Time Bank Calculation</h3>
+        <ul>
+          <li>Verify whether an automatic 30-minute lunch break was deducted.</li>
+          <li>Check that the admin has configured your correct contract percentage (e.g. 50% part-time vs 100% full-time).</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 LMS Platform Documentation. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script>
+    // Smooth navigation active states
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll(".nav-item");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 150)) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove("active");
+        if (item.querySelector("a").getAttribute("href") === `#${current}`) {
+          item.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
